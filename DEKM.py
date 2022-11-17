@@ -148,7 +148,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='select dataset:MNIST,COIL20,FRGC,USPS')
     parser.add_argument('ds_name', default='MNIST')
     args = parser.parse_args()
-    if args.ds_name is None or not args.ds_name in ['MNIST', 'FRGC', 'COIL20', 'USPS']:
+    if args.ds_name is None or not args.ds_name in ['MNIST', 'FRGC', 'COIL20', 'USPS', 'CIFAR10']:
         ds_name = 'MNIST'
     else:
         ds_name = args.ds_name
