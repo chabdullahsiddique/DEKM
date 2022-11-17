@@ -156,6 +156,9 @@ if __name__ == '__main__':
     if ds_name == 'MNIST':
         input_shape = (28, 28, 1)
         n_clusters = 10
+    elif ds_name == 'CIFAR10':
+        input_shape = (32, 32, 1)
+        n_clusters = 10
     elif ds_name == 'USPS':
         input_shape = (16, 16, 1)
         n_clusters = 10

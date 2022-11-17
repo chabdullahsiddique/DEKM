@@ -4,6 +4,7 @@ import csv
 import os
 from tensorflow.keras.datasets import mnist
 from tensorflow.keras.datasets import fashion_mnist
+from tensorflow.keras.datasets import cifar10
 import h5py
 
 
@@ -107,6 +108,11 @@ def get_xy(ds_name='REUTERS', dir_path=r'datasets/', log_print=True, shuffle_see
         x = x / tf.expand_dims(tf.norm(x, ord=2, axis=-1), -1).numpy()
     elif ds_name == 'MNIST':
         (x_train, y_train), (x_test, y_test) = mnist.load_data()
+        x = np.concatenate((x_train, x_test))
+        y = np.concatenate((y_train, y_test))
+        x = np.expand_dims(np.divide(x, 255.), -1)
+    elif ds_name == 'CIFAR10':
+        (x_train, y_train), (x_test, y_test) = cifar10.load_data()
         x = np.concatenate((x_train, x_test))
         y = np.concatenate((y_train, y_test))
         x = np.expand_dims(np.divide(x, 255.), -1)
