@@ -139,7 +139,7 @@ def train(x, y):
 
 
 if __name__ == '__main__':
-    pretrain_epochs = 200
+    pretrain_epochs = 10
     pretrain_batch_size = 256
     batch_size = 256
     update_interval = 40
@@ -157,7 +157,7 @@ if __name__ == '__main__':
         input_shape = (28, 28, 1)
         n_clusters = 10
     elif ds_name == 'CIFAR10':
-        input_shape = (32, 32, 1)
+        input_shape = (32, 32, 3)
         n_clusters = 10
     elif ds_name == 'USPS':
         input_shape = (16, 16, 1)
