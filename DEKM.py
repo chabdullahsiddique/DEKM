@@ -139,7 +139,7 @@ def train(x, y):
 
 
 if __name__ == '__main__':
-    pretrain_epochs = 10
+    pretrain_epochs = 200
     pretrain_batch_size = 256
     batch_size = 256
     update_interval = 40
