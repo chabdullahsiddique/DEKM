@@ -5,6 +5,7 @@ import os
 from tensorflow.keras.datasets import mnist
 from tensorflow.keras.datasets import fashion_mnist
 from tensorflow.keras.datasets import cifar10
+from sklearn.datasets import load_digits
 import h5py
 
 
@@ -121,6 +122,11 @@ def get_xy(ds_name='REUTERS', dir_path=r'datasets/', log_print=True, shuffle_see
         x = np.concatenate((x_train, x_test))
         y = np.concatenate((y_train, y_test))
         x = np.expand_dims(np.divide(x, 255.), -1)
+    elif ds_name == 'DIGITS':
+        digits = load_digits()
+        x = digits.data
+        y = digits.target
+        x = np.expand_dims(x.reshape(len(x), 8, 8), -1)
     elif ds_name == 'USPS':
         with h5py.File(dir_path + 'USPS.h5', 'r') as hf:
             train = hf.get('train')
