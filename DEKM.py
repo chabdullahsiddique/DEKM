@@ -148,7 +148,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='select dataset:MNIST,COIL20,FRGC,USPS')
     parser.add_argument('ds_name', default='MNIST')
     args = parser.parse_args()
-    if args.ds_name is None or not args.ds_name in ['MNIST', 'FRGC', 'COIL20', 'USPS', 'CIFAR10', 'FASHION']:
+    if args.ds_name is None or not args.ds_name in ['MNIST', 'FRGC', 'COIL20', 'USPS', 'CIFAR10', 'FASHION', 'DIGITS']:
         ds_name = 'MNIST'
     else:
         ds_name = args.ds_name
@@ -171,6 +171,9 @@ if __name__ == '__main__':
     elif ds_name == 'FRGC':
         input_shape = (32, 32, 3)
         n_clusters = 20
+    elif ds_name == 'DIGITS':
+        input_shape = (8, 8, 1)
+        n_clusters = 10
 
     time_start = time.time()
     x, y = get_xy(ds_name=ds_name)
