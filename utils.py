@@ -6,6 +6,7 @@ from tensorflow.keras.datasets import mnist
 from tensorflow.keras.datasets import fashion_mnist
 from tensorflow.keras.datasets import cifar10
 from sklearn.datasets import load_digits
+import tensorflow_datasets as tfds
 import h5py
 
 
@@ -38,6 +39,9 @@ def get_ACC_NMI(_y, _y_pred):
     nmi = np.round(normalized_mutual_info_score(y, y_pred), 5)
     return acc, nmi
 
+def separate_tfds_img_dataset(dataset):
+    images, labels = tf.compat.v1.data.make_one_shot_iterator(dataset.batch(len(dataset))).get_next()
+    return images, labels
 
 def get_xy(ds_name='REUTERS', dir_path=r'datasets/', log_print=True, shuffle_seed=None):
     dir_path = dir_path + ds_name + '/'
@@ -127,6 +131,11 @@ def get_xy(ds_name='REUTERS', dir_path=r'datasets/', log_print=True, shuffle_see
         x = digits.data
         y = digits.target
         x = np.expand_dims(x.reshape(len(x), 8, 8), -1)
+    elif ds_name == 'MNIST_CORRUPTED':
+        data = tfds.load('mnist_corrupted', split='train', as_supervised=True)
+        x, y = separate_tfds_img_dataset(data)
+        x = np.array(x)
+        y = np.array(y)
     elif ds_name == 'USPS':
         with h5py.File(dir_path + 'USPS.h5', 'r') as hf:
             train = hf.get('train')
