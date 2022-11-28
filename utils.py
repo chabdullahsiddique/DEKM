@@ -126,7 +126,8 @@ def get_xy(ds_name='REUTERS', dir_path=r'datasets/', log_print=True, shuffle_see
         x = np.concatenate((x_train, x_test))
         x = np.dot(x, np.array([0.299, 0.587, 0.114]))
         y = np.concatenate((y_train, y_test)).squeeze()
-        x = np.expand_dims(np.divide(x, 255.), -1)
+#         x = np.expand_dims(np.divide(x, 255.), -1)
+        x = np.expand_dims(x, -1)
     elif ds_name == 'FASHION':
         (x_train, y_train), (x_test, y_test) = fashion_mnist.load_data()
         x = np.concatenate((x_train, x_test))
