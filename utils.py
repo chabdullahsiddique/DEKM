@@ -124,7 +124,7 @@ def get_xy(ds_name='REUTERS', dir_path=r'datasets/', log_print=True, shuffle_see
     elif ds_name == 'CIFAR10_GRAY':
         (x_train, y_train), (x_test, y_test) = cifar10.load_data()
         x = np.concatenate((x_train, x_test))
-        x = np.mean(x, -1)
+        x = np.dot(x, np.array([0.299, 0.587, 0.114]))
         y = np.concatenate((y_train, y_test)).squeeze()
         x = np.expand_dims(np.divide(x, 255.), -1)
     elif ds_name == 'FASHION':
