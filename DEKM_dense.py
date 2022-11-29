@@ -140,7 +140,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='select dataset:REUTERS,20NEWS,RCV1')
     parser.add_argument('ds_name', default='REUTERS')
     args = parser.parse_args()
-    if args.ds_name is None or not args.ds_name in ['REUTERS', '20NEWS', 'RCV1']:
+    if args.ds_name is None or not args.ds_name in ['REUTERS', '20NEWS', 'RCV1', 'CIFAR10', 'FASHION', 'DIGITS', 'MNIST_CORRUPTED', 'CIFAR10_GRAY']:
         ds_name = 'REUTERS'
     else:
         ds_name = args.ds_name
@@ -158,6 +158,15 @@ if __name__ == '__main__':
         input_shape = 2000
         n_clusters = 4
         hidden_units = 10
+     elif ds_name == 'CIFAR10':
+        input_shape = (32, 32, 3)
+        n_clusters = 10
+    elif ds_name == 'CIFAR10_GRAY':
+        input_shape = (32, 32, 1)
+        n_clusters = 10
+    elif ds_name == 'FASHION':
+        input_shape = (28, 28, 1)
+        n_clusters = 10
 
     time_start = time.time()
     x, y = get_xy(ds_name=ds_name)
